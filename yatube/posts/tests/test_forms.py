@@ -12,6 +12,7 @@ from ..models import Post, Group, Comment
 
 User = get_user_model()
 
+
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp(dir=settings.BASE_DIR))
 class PostFormTests(TestCase):
     """Тестовые данные"""
