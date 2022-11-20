@@ -15,8 +15,10 @@ from ..forms import PostForm
 
 User = get_user_model()
 
+TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
 
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp(dir=settings.BASE_DIR))
+
+@override_settings(MEDIA_ROOT=TEMP_MEDIA_ROOT)
 class PostViewTests(TestCase):
     """Создаем тестовых данных"""
     @classmethod
@@ -61,9 +63,7 @@ class PostViewTests(TestCase):
     def tearDownClass(cls):
         """Удаляем тестовые медиа."""
         super().tearDownClass()
-        shutil.rmtree(
-            tempfile.mkdtemp(dir=settings.BASE_DIR),
-            ignore_errors=True)
+        shutil.rmtree(TEMP_MEDIA_ROOT, ignore_errors=True)
 
     def setUp(self):
         self.authorized_client = Client()
