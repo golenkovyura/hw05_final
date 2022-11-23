@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.core.cache import cache
 
-from ..models import Post, Group
+from posts.models import Post, Group
 
 
 User = get_user_model()
@@ -133,7 +133,7 @@ class PostURLTests(TestCase):
             (reverse(
                 'posts:profile_unfollow',
                 kwargs={'username': 'unnamed'}
-            ), HTTPStatus.FOUND, True),
+            ), HTTPStatus.FOUND, False),
         ]
         for url, status_code, auth in url_status:
             with self.subTest(url=url):

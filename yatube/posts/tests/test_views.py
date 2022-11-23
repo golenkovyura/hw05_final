@@ -9,8 +9,8 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from ..models import Post, Group, Comment, Follow
-from ..forms import PostForm
+from posts.models import Post, Group, Comment, Follow
+from posts.forms import PostForm
 
 
 User = get_user_model()

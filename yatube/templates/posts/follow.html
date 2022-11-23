@@ -6,7 +6,7 @@
   {% include 'posts/includes/switcher.html' %}
   {% load thumbnail %}
   {% for post in page_obj %}
-      {% include 'posts/includes/post_display.html' with show_link=True %}
+      {% include 'posts/includes/post_display.html' with show_link=True profile_display=True %}
       {% if not forloop.last %}
         <hr>
       {% endif %}

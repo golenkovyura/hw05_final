@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
 
-from ..models import Post, Group, Comment
+from posts.models import Post, Group, Comment
 
 
 User = get_user_model()

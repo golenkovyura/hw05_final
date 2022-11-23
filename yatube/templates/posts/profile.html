@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Профайл пользователя {{ author.get_full_name }}{% endblock %}
+{% block title %}Профиль пользователя {{ author.get_full_name }}{% endblock %}
 {% block content %}              
 <div class="mb-5">
     <h1>Все посты пользователя {{ author.get_full_name }}</h1>
@@ -23,7 +23,7 @@
     {% endif %}    
 </div>   
     {% for post in page_obj %}
-        {% include 'posts/includes/post_display.html' with show_link=True %}
+        {% include 'posts/includes/post_display.html' with show_link=True profile_display=False %}
         {% if not forloop.last %}
             <hr>
         {% endif %}
