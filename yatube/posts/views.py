@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
-from posts.models import Group, Post, Follow, User, Comment
+from posts.models import Group, Post, Follow, User
 from posts.forms import PostForm, CommentForm
 
 
@@ -37,8 +37,7 @@ def profile(request, username):
     template = 'posts/profile.html'
     author = get_object_or_404(User, username=username)
     following = request.user.is_authenticated and Follow.objects.filter(
-        user=request.user,
-        author__username=username).exists()
+        user=request.user.id, author=author)
     post_list = author.posts.select_related('group')
     context = {
         'author': author,
@@ -54,8 +53,7 @@ def post_detail(request, post_id):
         Post.objects.select_related('group', 'author'),
         pk=post_id
     )
-    comments = Comment.objects.filter(
-        post__id=post_id).select_related('author')
+    comments = post.comments.select_related('author')
     context = {
         'post': post,
         'comments': comments,
