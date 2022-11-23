@@ -101,7 +101,6 @@ def post_edit(request, post_id):
     context = {
         'form': form,
         'is_edit': True,
-        'post': form.instance,
     }
     return render(request, template, context)
 
