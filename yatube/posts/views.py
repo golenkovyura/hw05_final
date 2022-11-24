@@ -36,8 +36,8 @@ def group_posts(request, slug):
 def profile(request, username):
     template = 'posts/profile.html'
     author = get_object_or_404(User, username=username)
-    following = request.user.is_authenticated and Follow.objects.filter(
-        user=request.user.id, author=author)
+    following = request.user.is_authenticated and request.user.follower.filter(
+        author=author).exists()
     post_list = author.posts.select_related('group')
     context = {
         'author': author,
